@@ -1,4 +1,5 @@
 ﻿@*@model MySql.Data.MySqlClient.MySqlDataReader*@
+@model  System.Data.DataTable
 @{
     Layout = null;
 }
@@ -20,14 +21,14 @@
                 <td>id</td>
                 <td>name</td>
             </tr>
-           @*@{ while (Model.Read())
+           @{ for(int i=0;i<Model.Rows.Count;i++)
                {
             <tr>
-                <td>@Model["id"]</td>
-                <td>@Model["name"]</td>
+                <td>@Model.Rows[i]["id"].ToString()</td>
+                <td>@Model.Rows[i]["name"].ToString()</td>
             </tr>
                }
-        }*@
+        }
         </table>
     </div>
 </body>
