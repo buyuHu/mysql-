@@ -7,7 +7,7 @@ namespace WebApplication4.Models
 {
     public class Class1
     {
-        int id { get; set; }
-        string name { get; set; }
+       public int id { get; set; }
+       public string name { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model MySql.Data.MySqlClient.MySqlDataReader
 @{
     Layout = null;
 }
@@ -14,6 +14,20 @@
     <h1>Hello World</h1>
     <h2>@ViewBag.a</h2>
     <div> 
+        <table>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+            </tr>
+           @{ while (Model.Read())
+               {
+            <tr>
+                <td>@Model["id"]</td>
+                <td>@Model["name"]</td>
+            </tr>
+               }
+        }
+        </table>
     </div>
 </body>
 </html>
