@@ -1,4 +1,4 @@
-﻿@model MySql.Data.MySqlClient.MySqlDataReader
+﻿@*@model MySql.Data.MySqlClient.MySqlDataReader*@
 @{
     Layout = null;
 }
@@ -19,14 +19,14 @@
                 <td>id</td>
                 <td>name</td>
             </tr>
-           @{ while (Model.Read())
+           @*@{ while (Model.Read())
                {
             <tr>
                 <td>@Model["id"]</td>
                 <td>@Model["name"]</td>
             </tr>
                }
-        }
+        }*@
         </table>
     </div>
 </body>

@@ -31,16 +31,21 @@ namespace WebApplication4.Controllers
                 //int i = com.ExecuteNonQuery();          
                 //ViewBag.a =i;
 
-                ViewBag.a = "成功";
+                //ViewBag.a = "成功";
 
-                //查询
-                MySqlCommand com = null;
-                MySqlDataReader dr = null;
-                com = new MySqlCommand("select*from newtable1", conn);
-                dr = com.ExecuteReader();
-
+                ////查询
+                //MySqlCommand com = null;
+                //MySqlDataReader dr = null;
+                //com = new MySqlCommand("select*from newtable1", conn);
+                //dr = com.ExecuteReader();
                 //其实这么写有点蠢，但是怎么进行查询，意思大概就在这里了。
-                return View(dr);
+                // return View(dr);
+
+                //如果select语句只返回一个值，则应该使用executescalar对象
+                MySqlCommand com = new MySqlCommand("select count(*)from newtable1", conn);
+                int sum = (int)(long)com.ExecuteScalar();
+                ViewBag.a = sum;
+                return View();
             }
             ViewBag.a = "失败";
                 return View();
