@@ -42,10 +42,21 @@ namespace WebApplication4.Controllers
                 // return View(dr);
 
                 //如果select语句只返回一个值，则应该使用executescalar对象
-                MySqlCommand com = new MySqlCommand("select count(*)from newtable1", conn);
-                int sum = (int)(long)com.ExecuteScalar();
-                ViewBag.a = sum;
+                //MySqlCommand com = new MySqlCommand("select count(*)from newtable1", conn);
+                //int sum = (int)(long)com.ExecuteScalar();
+                //ViewBag.a = sum;
+
+                //处理带参数的sql语句
+                //只执行一个sql语句
+                MySqlCommand com=new MySqlCommand();
+                com.Connection = conn;
+                com.CommandText = "insert into newtable1(id,name) values(?myid,?myname)";
+                com.Parameters.Add("?myid", 0);
+                com.Parameters.AddWithValue("?myname", "平");
+                int i=com.ExecuteNonQuery();
+                ViewBag.a = i;
                 return View();
+                
             }
             ViewBag.a = "失败";
                 return View();
