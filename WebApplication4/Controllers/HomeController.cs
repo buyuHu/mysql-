@@ -48,15 +48,37 @@ namespace WebApplication4.Controllers
 
                 //处理带参数的sql语句
                 //只执行一个sql语句
-                MySqlCommand com=new MySqlCommand();
+                //MySqlCommand com=new MySqlCommand();
+                //com.Connection = conn;
+                //com.CommandText = "insert into newtable1(id,name) values(?myid,?myname)";
+                //com.Parameters.Add("?myid", 0);
+                //com.Parameters.AddWithValue("?myname", "平");
+                //int i=com.ExecuteNonQuery();
+                //ViewBag.a = i;
+                //return View();
+
+                //执行多次sql语句
+                MySqlCommand com = new MySqlCommand();
+                MySqlParameter p_id, p_name;
                 com.Connection = conn;
                 com.CommandText = "insert into newtable1(id,name) values(?myid,?myname)";
-                com.Parameters.Add("?myid", 0);
-                com.Parameters.AddWithValue("?myname", "平");
-                int i=com.ExecuteNonQuery();
+                p_id=com.Parameters.Add("?myid",MySqlDbType.Int32);
+                p_name=com.Parameters.Add("?myname", MySqlDbType.VarChar);
+                com.Prepare();//处理一下
+                //第一次执行
+                p_id.Value = 0;
+                p_name.Value = "wang";
+                int i = com.ExecuteNonQuery();
                 ViewBag.a = i;
+                //第二次执行
+                p_id.Value = 0;
+                p_name.Value = "fang";
+                int j = com.ExecuteNonQuery();
+                ViewBag.b = j;
                 return View();
-                
+
+
+
             }
             ViewBag.a = "失败";
                 return View();
